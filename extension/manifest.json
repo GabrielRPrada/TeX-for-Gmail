@@ -1,12 +1,14 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "LaTeX for Gmail",
   "description": "Use LaTeX with Gmail.",
   "version": "0.1",
   "permissions": [
     "activeTab",
     "storage",
-    "contextMenus",
+    "contextMenus"
+  ],
+  "host_permissions": [
     "https://mail.google.com/",
     "https://blank.org/*"
   ],
@@ -19,7 +21,6 @@
         "https://mail.google.com/*",
         "https://blank.org/*"
       ],
-      "document_idle": "document_idle",
       "js": [
         "src/utils.js",
         "src/communicator.js",
@@ -28,8 +29,13 @@
       ]
     }
   ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'wasm-unsafe-eval' default-src 'self'"
+   },
   "web_accessible_resources": [
-    "chrome-extension:/*",
-    "blob:*"
+    {
+      "resources": [ "extension:/", "blob:" ],
+      "matches": [ "https://mail.google.com/*", "https://blank.org/*"]
+    }
   ]
 }

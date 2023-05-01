@@ -1,6 +1,6 @@
 "use strict";
 
-let port = chrome.runtime.connect({ name: `${random_id(64)}` });
+let port = browser.runtime.connect({ name: `${random_id(64)}` });
 let comm = new Communicator(new PortWrapper(port));
 
 async function getBackgroundPageStatus() {

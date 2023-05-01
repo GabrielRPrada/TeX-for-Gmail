@@ -154,7 +154,7 @@ function setupMessageHandler(comm) {
   comm.messageHandler.revokeUrl = revokeUrl;
 }
 
-chrome.runtime.onConnect.addListener(function (port) {
+browser.runtime.onConnect.addListener(function (port) {
   let comm = new Communicator(new PortWrapper(port));
   ports[port.name] = comm;
   setupMessageHandler(comm);

@@ -16,10 +16,10 @@ const timestampForFilesInDirectory = dir =>
     files.map(f => f.name + f.lastModifiedDate).join())
 
 const reload = () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, tabs => { // NB: see https://github.com/xpl/crx-hotreload/issues/5
+  browser.tabs.query({ active: true, currentWindow: true }, tabs => { // NB: see https://github.com/xpl/crx-hotreload/issues/5
     if (tabs[0])
-      chrome.tabs.reload(tabs[0].id)
-    chrome.runtime.reload()
+      browser.tabs.reload(tabs[0].id)
+    browser.runtime.reload()
   })
 }
 
@@ -32,7 +32,7 @@ const watchChanges = (dir, lastTimestamp) => {
   })
 }
 
-chrome.management.getSelf(self => {
-  if (self.installType === 'development')
-    chrome.runtime.getPackageDirectoryEntry(dir => watchChanges(dir))
-})
+// browser.management.getSelf(self => {
+//   if (self.installType === 'development')
+//     browser.runtime.getPackageDirectoryEntry(dir => watchChanges(dir))
+// })
